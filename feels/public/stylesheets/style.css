@@ -56,20 +56,20 @@ button[id="FunnySubmit"] {
 }
 
 button[id="InspirationalShow"] {
-    color: #A1D2B2;
-    background-color: #DCFBDE; 
+   color: #DCFBDE;
+    background-color: #A1D2B2;  
 }
 button[id="RelationshipsShow"] {
-    color: #FBA9B8;
-    background-color:#FBDCE2 ; 
+   color: #FBDCE2;
+    background-color:#FBA9B8;  
 }
 button[id="AcademicsShow"] {
-    color: #93BFCE;
-    background-color: #D6E2E6; 
+  color: #D6E2E6;
+    background-color: #93BFCE; 
 }
 button[id="FunnyShow"] {
-    color: #FFDCA7;
-    background-color: #FFF7C3; 
+    color: #FFF7C3;
+    background-color: #FFDCA7 
 }
 
 
