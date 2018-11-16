@@ -3,6 +3,7 @@ $(document).ready(function(){
   
   $("#InspirationalSubmit").click(function(){
       var myobj = {Phrase:$("#phrase").val(),Category:"Inspirational"};
+      jobj = JSON.stringify(myobj);
       var url = "inspirational";
         $.ajax({
         url:url,
