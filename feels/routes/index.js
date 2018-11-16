@@ -38,7 +38,7 @@ router.post('/inspirational', function(req, res, next) {
     });
 });
 
-router.post('/relationship', function(req, res, next) {
+router.post('/relationships', function(req, res, next) {
     console.log("POST relationship route"); 
     console.log(req.body);
     
@@ -97,19 +97,6 @@ router.get('/deleteAll', function(req, res, next) {
 
 
 
-
-router.get('/inspirational', function(req, res, next) {
-    console.log("get insp phrase route");
-
-    Phrase.find({Category:"Inspirational"}, function (err, docs) {
-      
-      if (err) return console.error(err); //If there's an error, cry
-      else {
-        console.log(docs);
-        res.json(docs); //Then send the comment
-      }
-    });
-});
 
 
 /*GETTING PHRASES*/
