@@ -1,11 +1,63 @@
 $(document).ready(function(){
-  $("#postComment").click(function(){
-      var myobj = {Name:$("#name").val(),Comment:$("#comment").val()};
+  
+  
+  $("#InspirationalSubmit").click(function(){
+      var myobj = {Phrase:$("#phrase").val(),Category:"Inspirational"};
+      var url = "inspirational";
+        $.ajax({
+        url:url,
+        type: "POST",
+        data: jobj,
+        contentType: "application/json; charset=utf-8",
+        success: function(data,textStatus) {
+            $("#done").html(textStatus);
+        }
+        })
+     
+  });
+  $("#RelationshipsSubmit").click(function(){
+      var myobj = {Phrase:$("#phrase").val(),Category:"Relationships"};
       jobj = JSON.stringify(myobj);
       $("#json").text(jobj);
       
       
-      var url = "comment";
+      var url = "relationships";
+        $.ajax({
+        url:url,
+        type: "POST",
+        data: jobj,
+        contentType: "application/json; charset=utf-8",
+        success: function(data,textStatus) {
+            $("#done").html(textStatus);
+        }
+        })
+     
+  });
+  $("#AcademicsSubmit").click(function(){
+      var myobj = {Phrase:$("#phrase").val(),Category:"Academics"};
+      jobj = JSON.stringify(myobj);
+      $("#json").text(jobj);
+      
+      
+      var url = "academics";
+        $.ajax({
+        url:url,
+        type: "POST",
+        data: jobj,
+        contentType: "application/json; charset=utf-8",
+        success: function(data,textStatus) {
+            $("#done").html(textStatus);
+        }
+        })
+     
+  });
+  $("#FunnySubmit").click(function(){
+      var myobj = {Phrase:$("#phrase").val(),Category:"Funny"};
+      jobj = JSON.stringify(myobj);
+      $("#json").text(jobj);
+      
+      
+      var url = "funny";
         $.ajax({
         url:url,
         type: "POST",
@@ -19,61 +71,101 @@ $(document).ready(function(){
   });
   
   
-  
-   $("#deleteComments").click(function() {
-        var url = "deleteAll";
-        $.ajax({
-        url:url,
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        success: function(data,textStatus) {
-            $("#comments").html("<ul></ul>");
-            $("#done").html("Deleted");
-            $("#json").text("");
-        }
-        })
-      });
-  
-  
-  
-  
-    $("#getComments").click(function() {
-        $.getJSON('comment', function(data) {
+    var inspToggle = 0;
+    $("#InspirationalShow").click(function() {
+      
+      if (inspToggle == 0){
+        $.getJSON('inspirational', function(data) {
           console.log(data);
           var everything = "<ul>";
-          for(var comment in data) {
-            com = data[comment];
-            everything += "<li> Name: " + com.Name + " -- Comment: " + com.Comment + "</li>";
+          for(var phrase in data) {
+            com = data[phrase];
+            everything += "<li> Phrase: " + com.Phrase + "</li>";
           }
           everything += "</ul>";
-          $("#comments").html(everything);
+          $(".Inspirational").html(everything);
         })
+        inspToggle = 1;
+      }
+      else{
+        $(".Inspirational").html("");
+        inspToggle = 0;
+      }
+      });
+      
+      
+    var relToggle = 0;
+    $("#RelationshipsShow").click(function() {
+      
+      if (relToggle == 0){
+        $.getJSON('relationships', function(data) {
+          console.log("Got relationship data");
+          console.log(data);
+          var everything = "<ul>";
+          for(var phrase in data) {
+            com = data[phrase];
+            console.log(com.Phrase);
+            everything += "<li> Phrase: " + com.Phrase + "</li>";
+          }
+          everything += "</ul>";
+          $(".Relationships").html(everything);
+          
+        })
+        relToggle = 1;
+      }
+      else{
+        $(".Relationships").html("");
+        
+        relToggle = 0;
+      }
+      });
+      
+      
+    var acaToggle = 0;
+    $("#AcademicsShow").click(function() {
+      
+      if (acaToggle == 0){
+        $.getJSON('academics', function(data) {
+          console.log(data);
+          var everything = "<ul>";
+          for(var phrase in data) {
+            com = data[phrase];
+            everything += "<li> Phrase: " + com.Phrase + "</li>";
+          }
+          everything += "</ul>";
+          $(".Academics").html(everything);
+        })
+        acaToggle = 1;
+      }
+      else{
+        $(".Academics").html("");
+        acaToggle = 0;
+      }
+      });
+      
+      
+    var funnyToggle = 0;
+    $("#FunnyShow").click(function() {
+      
+      if (funnyToggle == 0){
+        $.getJSON('funny', function(data) {
+          console.log(data);
+          var everything = "<ul>";
+          for(var phrase in data) {
+            com = data[phrase];
+            everything += "<li> Phrase: " + com.Phrase + "</li>";
+          }
+          everything += "</ul>";
+          $(".Funny").html(everything);
+        })
+        funnyToggle = 1;
+      }
+      else{
+        $(".Funny").html("");
+        funnyToggle = 0;
+      }
       });
   
-  $("#commentsByUser").click(function() {
-      var myobj = {Name:$("#userName").val()};
-      jobj = JSON.stringify(myobj);
-      $("#json").text(jobj);
-      
-      
-      var url = "byUser?q="+$("#userName").val();
-        $.ajax({
-        url:url,
-        type: "GET",
-        data: jobj,
-        contentType: "application/json; charset=utf-8",
-        success: function(data,textStatus) {
-            console.log(data);
-          var everything = "<ul>";
-          for(var comment in data) {
-            com = data[comment];
-            everything += "<li> Name: " + com.Name + " -- Comment: " + com.Comment + "</li>";
-          }
-          everything += "</ul>";
-          $("#comments").html(everything);
-        }
-        })
-      });
 });
 
 
