@@ -28,12 +28,12 @@ p {
 div {
   font-family: georgia;
   font-size:24px;
-  color: #ffff00;
+  color: black;
 }
 
 input[id="submit"]
 {
-    color:#FFDA00;
+    color:black;
     font-family: georgia;
     font-size:40px;
 }
@@ -73,5 +73,7 @@ button[id="FunnyShow"] {
 }
 
 
-
+.inspirational{
+    color:green;
+}
 
